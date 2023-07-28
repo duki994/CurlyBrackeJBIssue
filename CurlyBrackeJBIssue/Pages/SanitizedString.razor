@@ -1,0 +1,27 @@
+﻿<h3>@SanitizedInput</h3>
+
+@code {
+    [Parameter]
+    public string Input { get; set; } = string.Empty;
+
+    private string SanitizedInput { get; set; } = string.Empty;
+
+    private string Test => " "
+        .Replace(" ", string.Empty)
+        // {
+        .Replace("{", string.Empty);
+
+    private string Test2 => "{  }"
+        .Replace(" ", string.Empty)
+        // Replace {
+        .Replace("{", string.Empty);
+
+    protected override void OnInitialized()
+    {
+        SanitizedInput = Input
+            // Replaces { with empty string
+            .Replace("{", string.Empty);
+
+        base.OnInitialized();
+    }
+}
